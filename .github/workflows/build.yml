@@ -1,0 +1,27 @@
+name: ci
+
+on: push
+
+env:
+  DEBIAN_FRONTEND: noninteractive
+
+jobs:
+  run:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: git clone
+        run: |
+          git config --global credential.helper 'cache --timeout=30000'
+          git clone https://oauth2:${{ secrets.GITLAB_READ_TOKEN }}@gitlab.com/bookish-disco/sitar.git
+
+      - name: run
+        shell: bash
+        run: |
+          cd sitar
+          git checkout ci
+          bash scripts/run_in_docker.sh
+
+
