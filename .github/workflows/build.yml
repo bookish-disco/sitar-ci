@@ -2,15 +2,18 @@ name: ci
 
 on: push
 
-env:
-  DEBIAN_FRONTEND: noninteractive
-
 jobs:
   run:
     runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: check builder specs
+        run: |
+          lscpu
+          free -h
+          df -h
 
       - name: git clone
         run: |
