@@ -25,6 +25,7 @@ jobs:
         run: |
           cd sitar
           git checkout ci
+          git --no-pager log --decorate=short --pretty=oneline -n5
           bash scripts/run_in_docker.sh
 
 
