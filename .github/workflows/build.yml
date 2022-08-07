@@ -20,11 +20,11 @@ jobs:
           git config --global credential.helper 'cache --timeout=30000'
           git clone https://oauth2:${{ secrets.GITLAB_READ_TOKEN }}@gitlab.com/bookish-disco/sitar.git
 
-      - name: run
+      - name: Compile
         shell: bash
         run: |
           cd sitar
-          git checkout ci
+          # git checkout master
           git --no-pager log --decorate=short --pretty=oneline -n5
           bash scripts/run_in_docker.sh
 
